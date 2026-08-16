@@ -65,6 +65,43 @@
   --pad:40px;
   --rule:2px solid var(--text);
   --rule-soft:2px solid var(--divider);
+
+  /* Ramp steps the app-showcase section needs. */
+  --n-200:#eae7e7;
+  --n-900:#2d2b2b;
+  --accent-200:#fad2dc;
+  --accent-500:#d92a54;
+  --accent-800:#66091f;
+  --shadow-sm:0 1px 2px rgba(45,43,43,.14);
+
+  /* Aliases: the app-showcase markup was authored against --color-* /
+     --font-* names. Mapping them here keeps that markup verbatim rather
+     than find-replacing hundreds of inline styles. */
+  --color-bg:var(--bg);
+  --color-surface:var(--surface);
+  --color-text:var(--text);
+  --color-divider:var(--divider);
+  --color-neutral-100:var(--n-100);
+  --color-neutral-200:var(--n-200);
+  --color-neutral-300:var(--n-300);
+  --color-neutral-400:var(--n-400);
+  --color-neutral-500:var(--n-500);
+  --color-neutral-600:var(--n-600);
+  --color-neutral-700:var(--n-700);
+  --color-neutral-800:var(--n-800);
+  --color-neutral-900:var(--n-900);
+  --color-accent:var(--accent);
+  --color-accent-100:var(--accent-100);
+  --color-accent-200:var(--accent-200);
+  --color-accent-300:var(--accent-300);
+  --color-accent-400:var(--accent-400);
+  --color-accent-500:var(--accent-500);
+  --color-accent-600:var(--accent-600);
+  --color-accent-700:var(--accent-700);
+  --color-accent-800:var(--accent-800);
+  --color-accent-900:var(--accent-900);
+  --font-heading:var(--font);
+  --font-body:var(--font);
 }
 
 *{box-sizing:border-box}
@@ -333,6 +370,15 @@ footer h4{margin:0 0 18px;font-size:12px;font-weight:800;letter-spacing:.16em;te
 .a7{animation:arrive 1s .5s both}
 .pulse{animation:pulse 3.4s ease-in-out infinite}
 
+/* ── App showcase (#inside) ────────────────────────────────────────── */
+@keyframes v-arrive{from{opacity:0;transform:translateY(.32em)}to{opacity:1;transform:none}}
+@keyframes v-blink{0%,45%{opacity:1}50%,100%{opacity:0}}
+[data-tab]{font-family:var(--font)}
+[data-tab]:hover{background:var(--n-100)!important}
+[data-tab]:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.app-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:end}
+.app-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:64px;align-items:start}
+
 /* ── Responsive ────────────────────────────────────────────────────── */
 @media (max-width:1024px){
   :root{--pad:28px}
@@ -353,6 +399,9 @@ footer h4{margin:0 0 18px;font-size:12px;font-weight:800;letter-spacing:.16em;te
   .who > div{padding:48px 0;border-right:none;border-bottom:var(--rule-soft)}
   .who > div:last-child{border-bottom:none}
   footer .wrap{gap:40px}
+  .app-head{grid-template-columns:1fr;gap:24px;align-items:start}
+  .app-grid{grid-template-columns:1fr;gap:0}
+  .app-phone{padding-top:0!important;justify-content:center}
 }
 
 @media (max-width:768px){
@@ -686,31 +735,239 @@ footer h4{margin:0 0 18px;font-size:12px;font-weight:800;letter-spacing:.16em;te
   </div>
 </section>
 
-<!-- ══ Features ══════════════════════════════════════════════════════ -->
-<section id="inside" class="rule-b">
-  <div class="wrap" style="padding-block:96px 48px">
-    <h2 class="h-sec" data-reveal>Four things, none of them a chatbot.</h2>
+<!-- ══ App showcase ═══════════════════════════════════════════════ -->
+<section id="inside" class="rule-b" style="background:var(--surface)">
+  <div class="wrap app-head" style="padding-block:96px 48px">
+    <h2 data-reveal="" style="font-family:var(--font-heading);font-weight:900;font-size:clamp(32px,3.6vw,48px);line-height:1.02;letter-spacing:-0.035em;margin:0">The whole interrogation, in your pocket.</h2>
+    <p data-reveal="" style="margin:0;font-size:19px;line-height:1.55;color:var(--color-neutral-700);max-width:52ch">Four screens, one loop. Pick one to see it — the phone follows.</p>
   </div>
-  <div style="border-top:var(--rule)">
-    <div class="wrap features">
-      <div class="feature" data-reveal>
-        <div class="feature-top"><h3>Learn</h3><span>The Socratic engine</span></div>
-        <p>Questioning that keeps going past the right answer. It debates what you believe, not just what you can recall.</p>
+  <div style="border-top:2px solid var(--color-text)">
+    
+  <div class="wrap app-grid">
+      <div data-reveal="" style="display:grid;padding:56px 0 72px;align-content:start;gap:2px">
+      <button type="button" data-tab="0" style="display:block;width:100%;text-align:left;font-family:var(--font-body);background:var(--color-neutral-100);border:none;border-left:6px solid var(--color-accent);padding:32px 26px;cursor:pointer;transition:background .25s ease,border-color .25s ease">
+        <span style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px">
+          <span style="font-family:var(--font-heading);font-weight:900;font-size:14px;letter-spacing:0.08em;color:var(--color-accent)">01</span>
+          <span data-tab-title="" style="font-family:var(--font-heading);font-weight:900;font-size:clamp(22px,2.2vw,30px);letter-spacing:-0.03em;color:var(--color-text)">Learn</span>
+          <span style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-600)">The Socratic engine</span>
+        </span>
+        <span data-tab-body="" style="display:block;font-size:16px;line-height:1.5;color:var(--color-neutral-800);max-width:46ch;opacity:1;transition:opacity .25s ease">Answer, then defend the answer in your own words. The questioning keeps going past the right answer.</span>
+      </button>
+      <button type="button" data-tab="1" style="display:block;width:100%;text-align:left;font-family:var(--font-body);background:transparent;border:none;border-left:6px solid var(--color-divider);padding:32px 26px;cursor:pointer;transition:background .25s ease,border-color .25s ease">
+        <span style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px">
+          <span style="font-family:var(--font-heading);font-weight:900;font-size:14px;letter-spacing:0.08em;color:var(--color-accent)">02</span>
+          <span data-tab-title="" style="font-family:var(--font-heading);font-weight:900;font-size:clamp(22px,2.2vw,30px);letter-spacing:-0.03em;color:var(--color-neutral-600)">Path</span>
+          <span style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-600)">Adaptive by weakness</span>
+        </span>
+        <span data-tab-body="" style="display:block;font-size:16px;line-height:1.5;color:var(--color-neutral-800);max-width:46ch;opacity:0.55;transition:opacity .25s ease">It routes you at what you're shakiest on, not at what comes next in the chapter.</span>
+      </button>
+      <button type="button" data-tab="2" style="display:block;width:100%;text-align:left;font-family:var(--font-body);background:transparent;border:none;border-left:6px solid var(--color-divider);padding:32px 26px;cursor:pointer;transition:background .25s ease,border-color .25s ease">
+        <span style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px">
+          <span style="font-family:var(--font-heading);font-weight:900;font-size:14px;letter-spacing:0.08em;color:var(--color-accent)">03</span>
+          <span data-tab-title="" style="font-family:var(--font-heading);font-weight:900;font-size:clamp(22px,2.2vw,30px);letter-spacing:-0.03em;color:var(--color-neutral-600)">Map</span>
+          <span style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-600)">Your understanding, visible</span>
+        </span>
+        <span data-tab-body="" style="display:block;font-size:16px;line-height:1.5;color:var(--color-neutral-800);max-width:46ch;opacity:0.55;transition:opacity .25s ease">A live picture of what you hold firmly, loosely, and only think you hold.</span>
+      </button>
+      <button type="button" data-tab="3" style="display:block;width:100%;text-align:left;font-family:var(--font-body);background:transparent;border:none;border-left:6px solid var(--color-divider);padding:32px 26px;cursor:pointer;transition:background .25s ease,border-color .25s ease">
+        <span style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px">
+          <span style="font-family:var(--font-heading);font-weight:900;font-size:14px;letter-spacing:0.08em;color:var(--color-accent)">04</span>
+          <span data-tab-title="" style="font-family:var(--font-heading);font-weight:900;font-size:clamp(22px,2.2vw,30px);letter-spacing:-0.03em;color:var(--color-neutral-600)">Insights</span>
+          <span style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-600)">Proof of understanding</span>
+        </span>
+        <span data-tab-body="" style="display:block;font-size:16px;line-height:1.5;color:var(--color-neutral-800);max-width:46ch;opacity:0.55;transition:opacity .25s ease">The reasoning you produced, where it was sound, and where it collapsed under a follow-up.</span>
+      </button>
+        <div style="padding:28px 26px 0;border-left:6px solid transparent;display:flex;flex-wrap:wrap;gap:20px;align-items:center">
+          <a href="#start" class="btn btn-primary" style="border:none;color:#fff;font-size:16px;padding:14px 20px">Start being questioned</a>
+          <a href="#notify" style="font-size:13px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-neutral-700)">iOS and Android — get notified</a>
+        </div>
       </div>
-      <div class="feature" data-reveal>
-        <div class="feature-top"><h3>Path</h3><span>Adaptive by weakness</span></div>
-        <p>Vetus routes you toward what you&rsquo;re shakiest on, not what comes next in the chapter. Confidence and competence get told apart.</p>
+
+      <div data-reveal="" class="app-phone" style="padding:56px 0 72px;display:flex;justify-content:center">
+        <div style="width:322px;max-width:100%;background:var(--color-text);border-radius:44px;padding:10px;box-shadow:var(--shadow-lg)">
+          <div style="position:relative;border-radius:36px;background:var(--color-bg);overflow:hidden;height:664px">
+            <div style="position:absolute;top:12px;left:50%;transform:translateX(-50%);width:104px;height:28px;border-radius:999px;background:var(--color-text);z-index:2"></div>
+            <div data-screens="" style="height:100%">
+<div data-screen="0" style="display:flex;flex-direction:column;height:100%">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px 2px;font-size:15px;font-weight:700;letter-spacing:-0.01em">
+            <span>9:41</span>
+            <span style="display:flex;align-items:center;gap:7px;color:var(--color-text)">
+              <span style="display:flex;align-items:flex-end;gap:2px">
+                <i style="display:block;width:3px;height:5px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:8px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:11px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:14px;background:currentColor"></i>
+              </span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+              <span style="display:flex;align-items:center;gap:2px">
+                <span style="display:block;width:24px;height:13px;border:2px solid currentColor;border-radius:4px;padding:2px"><i style="display:block;width:100%;height:100%;background:currentColor;border-radius:1px"></i></span>
+                <i style="display:block;width:2px;height:5px;background:currentColor;border-radius:0 2px 2px 0"></i>
+              </span>
+            </span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 18px 14px">
+            <span style="width:40px;height:40px;border-radius:50%;background:var(--color-neutral-200);display:flex;align-items:center;justify-content:center;color:var(--color-text)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></span>
+            <span style="font-family:var(--font-heading);font-weight:700;font-size:20px;letter-spacing:-0.02em">Learn</span>
+            <span style="width:40px;height:40px;border-radius:50%;background:var(--color-neutral-200);display:flex;align-items:center;justify-content:center;color:var(--color-text)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:0 14px">
+            <div style="align-self:center;max-width:92%;background:var(--color-accent);color:#fff;border-radius:999px;padding:12px 18px;font-size:14px;font-weight:600;box-shadow:var(--shadow-sm);line-height:1.3">Why is the derivative of a constant zero?</div>
+            <div style="align-self:center;max-width:92%;background:var(--color-neutral-100);color:var(--color-text);border-radius:999px;padding:12px 18px;font-size:14px;font-weight:600;box-shadow:var(--shadow-sm);line-height:1.3">What would break if it were not?</div>
+            <div style="align-self:center;max-width:92%;background:var(--color-neutral-100);color:var(--color-text);border-radius:999px;padding:12px 18px;font-size:14px;font-weight:600;box-shadow:var(--shadow-sm);line-height:1.3">Say it without using the word “rule”.</div>
+          </div>
+          <div style="padding:12px 14px 8px">
+            <div style="display:flex;align-items:center;gap:10px;background:var(--color-neutral-100);border-radius:999px;padding:8px 8px 8px 18px;box-shadow:var(--shadow-md)">
+              <span style="flex:1;font-size:15px;color:var(--color-neutral-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Because it never changes, so its rate…<i style="display:inline-block;width:2px;height:1em;background:var(--color-accent);vertical-align:-0.15em;margin-left:2px;animation:v-blink 1s steps(1,end) infinite"></i></span>
+              <span style="width:44px;height:44px;border-radius:50%;background:var(--color-accent);color:#fff;display:flex;align-items:center;justify-content:center;flex:none"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></span>
+            </div>
+          </div>
+          <div style="background:var(--color-neutral-200);padding:8px 8px 10px;display:grid;gap:5px">
+            <div style="display:flex;gap:5px;justify-content:center;"><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">q</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">w</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">e</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">r</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">t</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">y</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">u</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">i</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">o</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">p</span></div>
+            <div style="display:flex;gap:5px;justify-content:center;padding:0 14px"><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">a</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">s</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">d</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">f</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">g</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">h</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">j</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">k</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">l</span></div>
+            <div style="display:flex;gap:5px;justify-content:center;padding:0 4px"><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">⇧</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">z</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">x</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">c</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">v</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">b</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">n</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">m</span><span style="flex:1;max-width:30px;background:var(--color-neutral-100);border-radius:6px;padding:7px 0;text-align:center;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)">⌫</span></div>
+            <div style="display:flex;gap:5px;justify-content:center">
+              <span style="width:46px;background:var(--color-neutral-100);border-radius:6px;padding:9px 0;text-align:center;font-size:13px;font-weight:600;box-shadow:var(--shadow-sm)">123</span>
+              <span style="flex:1;background:var(--color-neutral-100);border-radius:6px;padding:9px 0;box-shadow:var(--shadow-sm)"></span>
+              <span style="width:46px;background:var(--color-neutral-100);border-radius:6px;padding:9px 0;text-align:center;font-size:13px;box-shadow:var(--shadow-sm)">↵</span>
+            </div>
+          </div>
+        </div>
+<div data-screen="1" style="display:none;flex-direction:column;height:100%">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px 2px;font-size:15px;font-weight:700;letter-spacing:-0.01em">
+            <span>9:41</span>
+            <span style="display:flex;align-items:center;gap:7px;color:var(--color-text)">
+              <span style="display:flex;align-items:flex-end;gap:2px">
+                <i style="display:block;width:3px;height:5px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:8px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:11px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:14px;background:currentColor"></i>
+              </span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+              <span style="display:flex;align-items:center;gap:2px">
+                <span style="display:block;width:24px;height:13px;border:2px solid currentColor;border-radius:4px;padding:2px"><i style="display:block;width:100%;height:100%;background:currentColor;border-radius:1px"></i></span>
+                <i style="display:block;width:2px;height:5px;background:currentColor;border-radius:0 2px 2px 0"></i>
+              </span>
+            </span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 18px 14px">
+            <span style="width:40px;height:40px;border-radius:50%;background:var(--color-neutral-200);display:flex;align-items:center;justify-content:center;color:var(--color-text)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></span>
+            <span style="font-family:var(--font-heading);font-weight:700;font-size:20px;letter-spacing:-0.02em">Path</span>
+            <span style="width:40px;height:40px;border-radius:50%;background:var(--color-neutral-200);display:flex;align-items:center;justify-content:center;color:var(--color-text)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden;display:grid;gap:10px;align-content:start;padding:2px 16px 14px">
+            <span style="font-size:12px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-neutral-600)">Routed by weakness</span>
+            <div style="background:var(--color-neutral-100);border-radius:22px;padding:18px;box-shadow:var(--shadow-md);border-left:6px solid var(--color-accent)">
+              <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:8px"><span>Up next</span><span>Weakest</span></div>
+              <p style="margin:0 0 12px;font-family:var(--font-heading);font-weight:800;font-size:18px;letter-spacing:-0.02em">Chain rule — why it composes</p>
+              <div style="height:10px;border-radius:999px;background:var(--color-neutral-200);overflow:hidden"><div data-bar="0.22" style="height:100%;width:22%;background:var(--color-accent);transform-origin:left"></div></div>
+            </div>
+            <div style="background:var(--color-neutral-100);border-radius:22px;padding:18px;box-shadow:var(--shadow-sm)">
+              <div style="font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-600);margin-bottom:8px">Queued</div>
+              <p style="margin:0 0 12px;font-weight:700;font-size:16px">Continuity vs. limits</p>
+              <div style="height:10px;border-radius:999px;background:var(--color-neutral-200);overflow:hidden"><div data-bar="0.48" style="height:100%;width:48%;background:var(--color-neutral-700);transform-origin:left"></div></div>
+            </div>
+            <p style="margin:4px 0 0;font-size:13px;line-height:1.45;color:var(--color-neutral-700)">Confidence and competence are tracked apart.</p>
+          </div>
+          <div style="padding:12px 14px 8px">
+            <div style="display:flex;align-items:center;gap:10px;background:var(--color-neutral-100);border-radius:999px;padding:8px 8px 8px 18px;box-shadow:var(--shadow-md)">
+              <span style="flex:1;font-size:15px;color:var(--color-neutral-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Skip ahead to integrals instead<i style="display:inline-block;width:2px;height:1em;background:var(--color-accent);vertical-align:-0.15em;margin-left:2px;animation:v-blink 1s steps(1,end) infinite"></i></span>
+              <span style="width:44px;height:44px;border-radius:50%;background:var(--color-accent);color:#fff;display:flex;align-items:center;justify-content:center;flex:none"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></span>
+            </div>
+          </div>
+        </div>
+<div data-screen="2" style="display:none;flex-direction:column;height:100%">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px 2px;font-size:15px;font-weight:700;letter-spacing:-0.01em">
+            <span>9:41</span>
+            <span style="display:flex;align-items:center;gap:7px;color:var(--color-text)">
+              <span style="display:flex;align-items:flex-end;gap:2px">
+                <i style="display:block;width:3px;height:5px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:8px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:11px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:14px;background:currentColor"></i>
+              </span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+              <span style="display:flex;align-items:center;gap:2px">
+                <span style="display:block;width:24px;height:13px;border:2px solid currentColor;border-radius:4px;padding:2px"><i style="display:block;width:100%;height:100%;background:currentColor;border-radius:1px"></i></span>
+                <i style="display:block;width:2px;height:5px;background:currentColor;border-radius:0 2px 2px 0"></i>
+              </span>
+            </span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 18px 14px">
+            <span style="width:40px;height:40px;border-radius:50%;background:var(--color-neutral-200);display:flex;align-items:center;justify-content:center;color:var(--color-text)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></span>
+            <span style="font-family:var(--font-heading);font-weight:700;font-size:20px;letter-spacing:-0.02em">Map</span>
+            <span style="width:40px;height:40px;border-radius:50%;background:var(--color-neutral-200);display:flex;align-items:center;justify-content:center;color:var(--color-text)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden;display:grid;gap:12px;align-content:start;padding:2px 16px 14px">
+            <span style="font-size:12px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-neutral-600)">Calculus — 28 concepts</span>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+              <div style="background:var(--color-accent);color:#fff;border-radius:20px;padding:16px;height:96px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow-sm)"><span style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase">Held</span><span style="font-weight:700;font-size:16px">Limits</span></div>
+              <div style="background:var(--color-accent-300);color:var(--color-accent-900);border-radius:20px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow-sm)"><span style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase">Loose</span><span style="font-weight:700;font-size:16px">Continuity</span></div>
+              <div style="background:var(--color-neutral-100);color:var(--color-neutral-700);border-radius:20px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow-sm)"><span style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase">Hollow</span><span style="font-weight:700;font-size:16px">Chain rule</span></div>
+              <div style="background:var(--color-accent);color:#fff;border-radius:20px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow-sm)"><span style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase">Held</span><span style="font-weight:700;font-size:16px">Integrals</span></div>
+              <div style="background:var(--color-accent-300);color:var(--color-accent-900);border-radius:20px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow-sm)"><span style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase">Loose</span><span style="font-weight:700;font-size:16px">Series</span></div>
+              <div style="background:var(--color-neutral-100);color:var(--color-neutral-700);border-radius:20px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow-sm)"><span style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase">Hollow</span><span style="font-weight:700;font-size:16px">Optimisation</span></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;column-gap:14px;row-gap:6px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-700)">
+              <span style="display:flex;align-items:center;gap:6px"><i style="display:block;width:10px;height:10px;border-radius:50%;background:var(--color-accent);flex:none"></i>Held</span>
+              <span style="display:flex;align-items:center;gap:6px"><i style="display:block;width:10px;height:10px;border-radius:50%;background:var(--color-accent-300);flex:none"></i>Loose</span>
+              <span style="display:flex;align-items:center;gap:6px"><i style="display:block;width:10px;height:10px;border-radius:50%;background:var(--color-neutral-300);flex:none"></i>Hollow</span>
+            </div>
+            <p style="margin:0;font-size:13px;line-height:1.45;color:var(--color-neutral-700)">Last redraw: 6 minutes ago, after you couldn't say why.</p>
+          </div>
+          <div style="padding:12px 14px 8px">
+            <div style="display:flex;align-items:center;gap:10px;background:var(--color-neutral-100);border-radius:999px;padding:8px 8px 8px 18px;box-shadow:var(--shadow-md)">
+              <span style="flex:1;font-size:15px;color:var(--color-neutral-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Question me on a hollow one<i style="display:inline-block;width:2px;height:1em;background:var(--color-accent);vertical-align:-0.15em;margin-left:2px;animation:v-blink 1s steps(1,end) infinite"></i></span>
+              <span style="width:44px;height:44px;border-radius:50%;background:var(--color-accent);color:#fff;display:flex;align-items:center;justify-content:center;flex:none"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></span>
+            </div>
+          </div>
+        </div>
+<div data-screen="3" style="display:none;flex-direction:column;height:100%">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px 2px;font-size:15px;font-weight:700;letter-spacing:-0.01em">
+            <span>9:41</span>
+            <span style="display:flex;align-items:center;gap:7px;color:var(--color-text)">
+              <span style="display:flex;align-items:flex-end;gap:2px">
+                <i style="display:block;width:3px;height:5px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:8px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:11px;background:currentColor"></i>
+                <i style="display:block;width:3px;height:14px;background:currentColor"></i>
+              </span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+              <span style="display:flex;align-items:center;gap:2px">
+                <span style="display:block;width:24px;height:13px;border:2px solid currentColor;border-radius:4px;padding:2px"><i style="display:block;width:100%;height:100%;background:currentColor;border-radius:1px"></i></span>
+                <i style="display:block;width:2px;height:5px;background:currentColor;border-radius:0 2px 2px 0"></i>
+              </span>
+            </span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 18px 14px">
+            <span style="width:40px;height:40px;border-radius:50%;background:var(--color-neutral-200);display:flex;align-items:center;justify-content:center;color:var(--color-text)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></span>
+            <span style="font-family:var(--font-heading);font-weight:700;font-size:20px;letter-spacing:-0.02em">Insights</span>
+            <span style="width:40px;height:40px;border-radius:50%;background:var(--color-neutral-200);display:flex;align-items:center;justify-content:center;color:var(--color-text)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden;display:grid;gap:12px;align-content:start;padding:2px 16px 14px">
+            <span style="font-size:12px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-neutral-600)">Session 14 — 11 minutes</span>
+            <div style="background:var(--color-accent-100);border:2px solid var(--color-accent);border-radius:22px;padding:18px;box-shadow:var(--shadow-sm)">
+              <div style="font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:8px">Tutor insight</div>
+              <p style="margin:0;font-family:var(--font-heading);font-weight:800;font-size:17px;line-height:1.3;color:var(--color-accent-900)">“Your understanding of ‘Limits’ seems rule-based. Shall we explore why they exist?”</p>
+            </div>
+            <div style="background:var(--color-neutral-100);border-radius:22px;padding:6px 18px;box-shadow:var(--shadow-sm)">
+              <div style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:2px solid var(--color-neutral-200);font-size:15px"><span style="font-weight:600">Reasoning held</span><span style="font-family:var(--font-heading);font-weight:900;color:var(--color-accent)">6</span></div>
+              <div style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:2px solid var(--color-neutral-200);font-size:15px"><span style="font-weight:600">Collapsed on follow-up</span><span style="font-family:var(--font-heading);font-weight:900;color:var(--color-accent)">3</span></div>
+              <div style="display:flex;justify-content:space-between;padding:11px 0;font-size:15px"><span style="font-weight:600">Right for wrong reasons</span><span style="font-family:var(--font-heading);font-weight:900;color:var(--color-accent)">2</span></div>
+            </div>
+            <p style="margin:0;font-size:13px;line-height:1.45;color:var(--color-neutral-700)">Not a grade. A record of where it gave way.</p>
+          </div>
+          <div style="padding:12px 14px 8px">
+            <div style="display:flex;align-items:center;gap:10px;background:var(--color-neutral-100);border-radius:999px;padding:8px 8px 8px 18px;box-shadow:var(--shadow-md)">
+              <span style="flex:1;font-size:15px;color:var(--color-neutral-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Show me the two I got right by luck<i style="display:inline-block;width:2px;height:1em;background:var(--color-accent);vertical-align:-0.15em;margin-left:2px;animation:v-blink 1s steps(1,end) infinite"></i></span>
+              <span style="width:44px;height:44px;border-radius:50%;background:var(--color-accent);color:#fff;display:flex;align-items:center;justify-content:center;flex:none"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg></span>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="feature" data-reveal>
-        <div class="feature-top"><h3>Map</h3><span>Your understanding, visible</span></div>
-        <p>A live map of every concept you&rsquo;ve been questioned on, and how solidly it&rsquo;s actually held. The gaps you can&rsquo;t feel become gaps you can see.</p>
-      </div>
-      <div class="feature" data-reveal>
-        <div class="feature-top"><h3>Insights</h3><span>Proof of understanding</span></div>
-        <p>Not a grade. A record of the reasoning you produced, where it was sound, and where it collapsed under a follow-up.</p>
-      </div>
-    </div>
-  </div>
+    </div></div>
 </section>
 
 <!-- ══ Fair warning ══════════════════════════════════════════════════ -->
@@ -974,6 +1231,66 @@ footer h4{margin:0 0 18px;font-size:12px;font-weight:800;letter-spacing:.16em;te
         document.getElementById('start').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
       };
     });
+  }
+
+  /* ── App showcase: tabs drive the phone screen ─────────────────── */
+  var tabs = [].slice.call(document.querySelectorAll('[data-tab]'));
+  var screens = [].slice.call(document.querySelectorAll('[data-screen]'));
+
+  function animateBars(screen) {
+    if (reduced) return;
+    [].forEach.call(screen.querySelectorAll('[data-bar]'), function (b) {
+      b.style.transition = 'transform 1s cubic-bezier(.2,.7,.2,1)';
+      b.style.transformOrigin = 'left';
+      b.style.transform = 'scaleX(0)';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { b.style.transform = 'scaleX(1)'; });
+      });
+    });
+  }
+
+  function selectTab(index) {
+    tabs.forEach(function (tab, i) {
+      var on = i === index;
+      tab.style.background = on ? 'var(--n-100)' : 'transparent';
+      tab.style.borderLeftColor = on ? 'var(--accent)' : 'var(--divider)';
+      var title = tab.querySelector('[data-tab-title]');
+      if (title) title.style.color = on ? 'var(--text)' : 'var(--n-600)';
+      var body = tab.querySelector('[data-tab-body]');
+      if (body) body.style.opacity = on ? '1' : '0.55';
+      tab.setAttribute('aria-selected', String(on));
+      tab.setAttribute('tabindex', on ? '0' : '-1');
+    });
+    screens.forEach(function (screen, i) {
+      if (i !== index) { screen.style.display = 'none'; return; }
+      screen.style.display = 'flex';
+      if (!reduced) {
+        screen.style.animation = 'none';
+        void screen.offsetWidth;              // force reflow so it replays
+        screen.style.animation = 'v-arrive .45s cubic-bezier(.2,.7,.2,1) both';
+      }
+      animateBars(screen);
+    });
+  }
+
+  if (tabs.length && screens.length) {
+    var list = tabs[0].parentNode;
+    if (list) list.setAttribute('role', 'tablist');
+    tabs.forEach(function (tab, i) {
+      tab.setAttribute('role', 'tab');
+      tab.addEventListener('click', function () { selectTab(i); });
+      // Arrow keys move between tabs, as a tablist should.
+      tab.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1
+              : e.key === 'ArrowUp'   || e.key === 'ArrowLeft'  ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = (i + d + tabs.length) % tabs.length;
+        selectTab(n);
+        tabs[n].focus();
+      });
+    });
+    selectTab(0);
   }
 
   /* ── Notify form ───────────────────────────────────────────────── */
