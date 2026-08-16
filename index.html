@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vetus — The AI that asks</title>
+<meta name="description" content="An AI that questions you instead of answering you. Vetus interrogates your understanding — concept by concept, &quot;why?&quot; by &quot;why?&quot; Vetus, by OffAxis.">
+<link rel="canonical" href="https://www.vetus.study/">
+<meta name="theme-color" content="#f3f2f2">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.vetus.study/">
+<meta property="og:site_name" content="Vetus">
+<meta property="og:title" content="The answer tells you what. The question teaches you why.">
+<meta property="og:description" content="An AI that questions you instead of answering you. Vetus, by OffAxis.">
+<meta property="og:image" content="https://www.vetus.study/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The answer tells you what. The question teaches you why.">
+<meta name="twitter:description" content="An AI that questions you instead of answering you. Vetus, by OffAxis.">
+<meta name="twitter:image" content="https://www.vetus.study/og.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23201e1d'/%3E%3Ctext x='16' y='24' font-family='Helvetica,Arial,sans-serif' font-weight='bold' font-size='22' fill='%23c01038' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   Vetus — landing page
+   Single file, no build step, no dependencies beyond the webfont.
+   Tokens ▸ base ▸ components ▸ sections ▸ responsive ▸ motion
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root{
+  --bg:#f3f2f2;
+  --surface:#eae9e9;
+  --text:#201e1d;
+  --divider:rgba(32,30,29,.4);
+
+  --accent:#c01038;
+  --accent-100:#fdeef2;
+  --accent-300:#f4a7bb;
+  --accent-400:#e96585;
+  --accent-600:#a70b31;
+  --accent-700:#870726;
+  --accent-900:#470f1c;
+
+  --n-100:#f8f4f4;
+  --n-300:#d7d3d3;
+  --n-400:#bab6b6;
+  --n-500:#9b9797;
+  --n-600:#7d7979;
+  --n-700:#605d5d;
+  --n-800:#444141;
+
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --shadow-md:0 3px 10px rgba(45,43,43,.16);
+  --shadow-lg:0 12px 32px rgba(45,43,43,.22);
+
+  --maxw:1280px;
+  --pad:40px;
+  --rule:2px solid var(--text);
+  --rule-soft:2px solid var(--divider);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--font);font-size:17px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--font);margin:0;text-wrap:balance}
+p{text-wrap:pretty}
+img{max-width:100%;display:block}
+
+a{color:var(--accent-700);text-decoration:none;border-bottom:2px solid var(--accent-300);transition:color .18s,border-color .18s}
+a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.rule-b{border-bottom:var(--rule)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+
+/* ── Buttons ───────────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--font);font-weight:800;font-size:17px;line-height:1.2;
+  padding:16px 24px;border:2px solid var(--accent);border-radius:0;
+  background:var(--accent);color:#fff;cursor:pointer;
+  transition:background .18s,border-color .18s,transform .18s;
+}
+.btn:hover{background:var(--accent-600);border-color:var(--accent-600);color:#fff;transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-sm{font-size:14px;padding:10px 16px}
+
+/* ── Header ────────────────────────────────────────────────────────── */
+.site-header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:var(--rule)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:32px;padding-block:14px}
+.brand{display:flex;align-items:baseline;gap:10px;border:none;color:var(--text)}
+.brand:hover{color:var(--text)}
+.brand-mark{font-weight:900;font-size:24px;letter-spacing:-.03em;text-transform:uppercase;color:#0f0d0d}
+.brand-sub{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--n-600)}
+.nav{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:600}
+.nav a{color:var(--text);border:none;padding:4px 0;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.nav .btn{border:2px solid var(--accent)}
+
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);z-index:60;transform-origin:left}
+
+/* ── Hero ──────────────────────────────────────────────────────────── */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:stretch}
+.hero-copy{padding:88px 56px 72px 0;border-right:var(--rule-soft)}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;border:2px solid var(--text);
+  padding:6px 12px 6px 6px;margin-bottom:40px;
+}
+.hero-badge b{background:var(--accent);color:#fff;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px}
+.hero-badge span{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.hero h1{font-weight:900;font-size:clamp(40px,5.6vw,82px);line-height:.95;letter-spacing:-.045em;margin-bottom:32px}
+.hero h1 span{display:block}
+.hero h1 .accent{color:var(--accent)}
+.hero-sub{max-width:34ch;font-size:20px;line-height:1.5;color:var(--n-800);margin:0 0 40px}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:20px}
+.link-quiet{font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--n-700);border-bottom:2px solid var(--n-400)}
+.link-quiet:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.hero-fine{margin:24px 0 0;font-size:14px;color:var(--n-600)}
+.hero-demo{padding:64px 0 64px 56px;display:flex;align-items:center;justify-content:center}
+
+/* ── Device card ───────────────────────────────────────────────────── */
+.card{border:var(--rule);background:var(--n-100);box-shadow:var(--shadow-md)}
+.card-lg{box-shadow:var(--shadow-lg);width:100%;max-width:420px}
+.card-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:var(--rule);padding:10px 14px;background:var(--text);color:var(--n-100);
+}
+.card-bar .dots{display:flex;gap:6px}
+.card-bar .dots i{width:9px;height:9px;display:block}
+.card-head{border-bottom:var(--rule);padding:12px 16px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.card-body{padding:22px 20px 24px;display:grid;gap:18px}
+.card-q{font-weight:800;font-size:26px;line-height:1.15;letter-spacing:-.025em;margin:0}
+.hairline{height:2px;background:var(--divider)}
+
+.ask{display:grid;gap:8px;border-left:4px solid var(--accent);padding-left:14px}
+.ask .typed{font-weight:700;font-size:24px;line-height:1.15;letter-spacing:-.02em;margin:0;min-height:2.3em}
+.caret{display:inline-block;width:.5em;height:1em;background:var(--accent);vertical-align:-.14em;animation:blink 1s steps(1,end) infinite}
+.fake-input{border:var(--rule-soft);background:var(--bg);min-height:76px;padding:12px 14px;font-size:15px;color:var(--n-500)}
+
+.opts{display:grid;gap:2px;background:var(--divider);border:var(--rule-soft)}
+.opt{
+  background:var(--bg);padding:14px 16px;font-weight:600;color:var(--n-800);
+  display:flex;justify-content:space-between;gap:12px;
+  font-family:var(--font);font-size:17px;text-align:left;
+  border:none;width:100%;cursor:pointer;transition:background .15s,color .15s;
+}
+.opt:hover{background:var(--surface)}
+.opt.is-active{background:var(--accent);color:#fff}
+.opt.is-picked{background:var(--text);color:var(--n-100)}
+
+/* ── Marquee ───────────────────────────────────────────────────────── */
+.marquee{border-bottom:var(--rule);background:var(--accent);color:#fff;overflow:hidden;padding:12px 0}
+.marquee-track{display:flex;width:max-content;animation:marquee 26s linear infinite}
+.marquee-track span{
+  font-weight:800;font-size:15px;letter-spacing:.22em;text-transform:uppercase;
+  white-space:nowrap;padding-right:28px;
+}
+
+/* ── Sections ──────────────────────────────────────────────────────── */
+.thesis{padding-block:112px 104px}
+.thesis h2{font-weight:900;font-size:clamp(34px,5vw,72px);line-height:1;letter-spacing:-.04em;max-width:20ch}
+.thesis h2 .accent{color:var(--accent)}
+.thesis .bar{height:2px;background:var(--text);margin:40px 0 24px;max-width:640px;transform-origin:left}
+
+.h-sec{font-weight:900;font-size:clamp(28px,3.6vw,48px);line-height:1.02;letter-spacing:-.035em}
+
+.ev-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:56px;align-items:end;padding-bottom:56px}
+.ev-head p{margin:0;font-size:19px;color:var(--n-700);max-width:56ch}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.stat{padding:48px 40px 44px;border-right:var(--rule-soft)}
+.stat:first-child{padding-left:0}
+.stat:last-child{padding-right:0;border-right:none}
+.stat-n{font-weight:900;font-size:clamp(56px,7vw,104px);line-height:.9;letter-spacing:-.05em;color:var(--accent)}
+.stat .bar{height:2px;background:var(--accent);margin:20px 0;transform-origin:left}
+.stat p{margin:0 0 20px;font-size:17px;line-height:1.5}
+.src{font-size:13px;font-weight:600;color:var(--n-700);border-bottom-color:var(--n-400)}
+.ev-foot{margin:0;max-width:78ch;font-size:19px;line-height:1.5}
+
+.turn{background:var(--surface)}
+.turn .wrap{max-width:820px;padding-block:112px}
+.turn .bar{height:2px;background:var(--text);margin-bottom:32px;transform-origin:left}
+.turn h2{font-weight:900;font-size:clamp(26px,3.4vw,44px);line-height:1.05;letter-spacing:-.035em;margin-bottom:36px}
+.turn .lead{margin:0 0 28px;font-weight:700;font-size:clamp(24px,3vw,30px);line-height:1.2;letter-spacing:-.02em}
+.turn .lead i{color:var(--accent)}
+.turn p{font-size:19px;line-height:1.6;max-width:68ch;margin:0 0 24px}
+.turn .punch{font-weight:800;font-size:26px;letter-spacing:-.02em;margin-bottom:36px}
+.turn .close{font-size:18px;color:var(--n-700);margin:0}
+
+/* ── How it works ──────────────────────────────────────────────────── */
+.step{border-top:var(--rule-soft)}
+.step .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.step-copy{padding-block:72px}
+.step-visual{padding-block:48px}
+.step-num{font-weight:900;font-size:20px;color:var(--accent);letter-spacing:.06em}
+.step h3{font-weight:800;font-size:clamp(22px,2.4vw,34px);line-height:1.1;letter-spacing:-.03em}
+.step-copy > div{display:flex;align-items:baseline;gap:16px;margin-bottom:20px}
+.step-copy p{margin:0;font-size:18px;line-height:1.55;color:var(--n-800);max-width:52ch}
+.step.flip .step-visual{order:1}
+.step.flip .step-copy{order:2}
+
+.meter{display:grid;gap:6px}
+.meter-top{display:flex;justify-content:space-between;font-size:13px;font-weight:600}
+.meter-top span:last-child{color:var(--n-600)}
+.meter-track{height:10px;background:var(--n-300)}
+.meter-fill{height:100%;background:var(--accent);transform-origin:left}
+
+.insight{border:2px solid var(--accent);background:var(--accent-100);box-shadow:var(--shadow-md)}
+.insight .card-head{border-bottom-color:var(--accent);background:var(--accent);color:#fff}
+.insight-body{padding:26px 22px;display:grid;gap:18px}
+.insight-q{margin:0;font-weight:800;font-size:clamp(20px,2vw,24px);line-height:1.25;letter-spacing:-.02em;color:var(--accent-900)}
+.tags{display:flex;gap:10px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;font-size:11px;letter-spacing:.02em;padding:4px 10px;border:1.5px solid var(--accent-700);color:var(--accent-700);font-weight:600}
+.btn-ghost{background:transparent;border-color:transparent;color:var(--accent-900);font-weight:700}
+.btn-ghost:hover{background:rgba(192,16,56,.1);border-color:transparent;color:var(--accent-900);transform:none}
+
+.defend{border-left:4px solid var(--accent);padding-left:12px}
+.defend p{margin:0;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-700)}
+
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:var(--rule)}
+.tabs span{padding:12px 8px;text-align:center;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--n-700);border-left:var(--rule)}
+.tabs span:first-child{border-left:none;font-weight:800;background:var(--text);color:var(--n-100)}
+.grid-map{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--divider);border:var(--rule-soft);margin:20px}
+.cell{padding:18px 12px;min-height:88px;display:flex;flex-direction:column;justify-content:space-between;background:var(--bg);color:var(--n-700)}
+.cell span:first-child{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.cell span:last-child{font-weight:700}
+.cell.held{background:var(--accent);color:#fff}
+.cell.loose{background:var(--accent-300);color:var(--accent-900)}
+
+/* ── Feature grid ──────────────────────────────────────────────────── */
+.features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.feature{padding:44px;border-right:var(--rule-soft);border-bottom:var(--rule-soft)}
+.feature:nth-child(odd){padding-left:0}
+.feature:nth-child(even){padding-right:0;border-right:none}
+.feature:nth-child(n+3){border-bottom:none}
+.feature-top{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.feature h3{font-weight:900;font-size:26px;letter-spacing:-.03em}
+.feature-top span{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.feature p{margin:0;font-size:18px;line-height:1.55;color:var(--n-800);max-width:46ch}
+
+/* ── Warning (accent block) ────────────────────────────────────────── */
+.warn{background:var(--accent);color:#fff;border-bottom:var(--rule)}
+.warn .wrap{padding-block:104px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:72px}
+.warn h2{font-weight:900;font-size:clamp(32px,4.6vw,64px);line-height:.98;letter-spacing:-.04em}
+.warn p{margin:0 0 22px;font-size:19px;line-height:1.55}
+.warn a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.warn a:hover{color:#fff;border-bottom-color:#fff}
+.warn .bar{height:2px;background:rgba(255,255,255,.5);margin-bottom:26px;transform-origin:left}
+.warn .punch{margin:0;font-weight:800;font-size:clamp(19px,2vw,22px);line-height:1.3;letter-spacing:-.02em}
+
+/* ── Audience ──────────────────────────────────────────────────────── */
+.who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.who > div{padding:72px 40px;border-right:var(--rule-soft)}
+.who > div:first-child{padding-left:0}
+.who > div:last-child{padding-right:0;border-right:none}
+.who h3{font-weight:900;font-size:22px;letter-spacing:-.02em;margin-bottom:14px;text-transform:uppercase}
+.who p{margin:0;font-size:18px;line-height:1.55;color:var(--n-800)}
+
+/* ── FAQ ───────────────────────────────────────────────────────────── */
+.faq{border-top:var(--rule)}
+details summary{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:26px 0;border-bottom:var(--rule-soft);cursor:pointer;list-style:none;
+}
+summary::-webkit-details-marker{display:none}
+details summary span:first-child{font-weight:800;font-size:clamp(18px,2vw,26px);letter-spacing:-.02em}
+.plus{font-size:26px;font-weight:700;color:var(--accent);transition:transform .25s ease;line-height:1;flex:none}
+details[open] .plus{transform:rotate(45deg)}
+details p{margin:0;padding:22px 0 30px;font-size:18px;line-height:1.6;color:var(--n-800);max-width:70ch;border-bottom:var(--rule-soft)}
+
+/* ── Final CTA ─────────────────────────────────────────────────────── */
+.final{background:var(--text);color:var(--n-100);border-bottom:var(--rule)}
+.final .wrap{padding-block:112px}
+.final h2{font-weight:900;font-size:clamp(34px,5.4vw,80px);line-height:.96;letter-spacing:-.045em;margin-bottom:28px;max-width:22ch}
+.final p{margin:0 0 44px;font-size:20px;color:var(--n-400);max-width:52ch}
+.final-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+.notify{display:flex;border:2px solid var(--n-100);max-width:100%}
+.notify input{
+  border:none;background:transparent;color:var(--n-100);font-family:var(--font);
+  font-size:16px;padding:14px 16px;min-width:0;width:240px;outline:none;
+}
+.notify input::placeholder{color:var(--n-500)}
+.notify button{
+  border:none;border-left:2px solid var(--n-100);background:transparent;color:var(--n-100);
+  font-family:var(--font);font-weight:700;font-size:14px;letter-spacing:.12em;
+  text-transform:uppercase;padding:14px 18px;cursor:pointer;transition:background .18s;
+}
+.notify button:hover{background:var(--accent);border-left-color:var(--accent)}
+.notify-msg{margin:18px 0 0;font-size:14px;color:var(--accent-400);min-height:1.2em}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+footer .wrap{padding-block:72px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px}
+.f-mark{font-weight:900;font-size:28px;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:16px}
+footer h4{margin:0 0 18px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--n-600)}
+.f-links{display:grid;gap:12px;font-size:15px}
+.f-note{margin:0 0 20px;font-size:16px;color:var(--n-700);max-width:34ch}
+.f-bottom{border-top:var(--rule)}
+.f-bottom .wrap{
+  padding-block:24px;display:flex;flex-wrap:wrap;gap:16px;
+  justify-content:space-between;font-size:14px;color:var(--n-700);
+}
+
+/* ── Keyframes ─────────────────────────────────────────────────────── */
+@keyframes arrive{from{opacity:0;transform:translateY(.32em)}to{opacity:1;transform:none}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes blink{0%,45%{opacity:1}50%,100%{opacity:0}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+.a1{animation:arrive .5s both}
+.a2{animation:arrive .7s .1s both cubic-bezier(.2,.7,.2,1)}
+.a3{animation:arrive .9s 1.15s both cubic-bezier(.2,.7,.2,1)}
+.a4{animation:arrive .8s 1.6s both}
+.a5{animation:arrive .8s 1.8s both}
+.a6{animation:arrive .8s 2s both}
+.a7{animation:arrive 1s .5s both}
+.pulse{animation:pulse 3.4s ease-in-out infinite}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width:1024px){
+  :root{--pad:28px}
+  .hero{grid-template-columns:1fr}
+  .hero-copy{padding:64px 0 48px;border-right:none;border-bottom:var(--rule-soft)}
+  .hero-demo{padding:48px 0;justify-content:flex-start}
+  .ev-head{grid-template-columns:1fr;gap:24px;align-items:start}
+  .stats{grid-template-columns:1fr}
+  .stat{padding:40px 0;border-right:none;border-bottom:var(--rule-soft)}
+  .stat:last-child{border-bottom:none}
+  .step .wrap{grid-template-columns:1fr;gap:0}
+  .step-copy{padding-block:56px 24px}
+  .step-visual{padding-block:0 56px}
+  .step.flip .step-visual{order:2}
+  .step.flip .step-copy{order:1}
+  .warn .wrap{grid-template-columns:1fr;gap:32px;padding-block:72px}
+  .who{grid-template-columns:1fr}
+  .who > div{padding:48px 0;border-right:none;border-bottom:var(--rule-soft)}
+  .who > div:last-child{border-bottom:none}
+  footer .wrap{grid-template-columns:1fr 1fr;gap:40px}
+}
+
+@media (max-width:768px){
+  body{font-size:16px}
+  .nav a:not(.btn){display:none}
+  .thesis{padding-block:72px}
+  .turn .wrap{padding-block:72px}
+  .final .wrap{padding-block:80px}
+  .features{grid-template-columns:1fr}
+  .feature{padding:36px 0;border-right:none;border-bottom:var(--rule-soft)}
+  .feature:nth-child(n+3){border-bottom:var(--rule-soft)}
+  .feature:last-child{border-bottom:none}
+  footer .wrap{grid-template-columns:1fr;gap:40px;padding-block:56px}
+  .grid-map{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:560px){
+  :root{--pad:20px}
+  .brand-sub{display:none}
+  .hero-cta{gap:16px}
+  .hero-cta .btn{width:100%}
+  .notify{width:100%}
+  .notify input{width:100%;flex:1}
+  .final-row .btn{width:100%}
+  .card-lg{max-width:none}
+  .grid-map{grid-template-columns:1fr}
+  .marquee-track span{font-size:13px;letter-spacing:.16em}
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+  .marquee-track{animation:none}
+  .caret{animation:none;opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <span class="brand-mark">Vetus</span>
+      <span class="brand-sub">by OffAxis</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#evidence">Evidence</a>
+      <a href="#how">How it works</a>
+      <a href="#inside">What&rsquo;s in it</a>
+      <a href="#faq">Questions</a>
+      <a href="#start" class="btn btn-sm">Start being questioned</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ══ Hero ══════════════════════════════════════════════════════════ -->
+<section id="top" class="rule-b">
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <div class="hero-badge a1">
+        <b>Beta</b>
+        <span>Vetus &mdash; by OffAxis</span>
+      </div>
+
+      <h1>
+        <span class="a2">The answer tells you what.</span>
+        <span class="accent a3">The question teaches you why.</span>
+      </h1>
+
+      <p class="hero-sub a4">Every other AI hands you the answer. Vetus hands you a question &mdash; then another, then another &mdash; until your understanding is either real or visibly incomplete.</p>
+
+      <div class="hero-cta a5">
+        <a href="#start" class="btn">Start being questioned</a>
+        <a href="#notify" class="link-quiet">iOS and Android &mdash; get notified</a>
+      </div>
+      <p class="hero-fine a6">Free while in beta. No sign-up wall to try one session.</p>
+    </div>
+
+    <div class="hero-demo">
+      <div class="card card-lg a7">
+        <div class="card-bar">
+          <span class="eyebrow">Session &mdash; Calculus</span>
+          <span class="dots" aria-hidden="true">
+            <i style="background:var(--accent)"></i>
+            <i style="background:var(--n-500)"></i>
+            <i style="background:var(--n-700)"></i>
+          </span>
+        </div>
+        <div class="card-body">
+          <div style="display:grid;gap:8px">
+            <span class="eyebrow" style="color:var(--n-600)">You said</span>
+            <p style="margin:0;font-size:16px;line-height:1.45;color:var(--n-800)">The derivative of a constant is zero.</p>
+          </div>
+          <div class="hairline"></div>
+          <div class="ask">
+            <span class="eyebrow" style="color:var(--accent-700)">Vetus asks</span>
+            <p class="typed"><span id="typed"></span><span class="caret" aria-hidden="true"></span></p>
+          </div>
+          <div style="display:grid;gap:10px">
+            <span class="eyebrow" style="color:var(--n-600)">Your reasoning</span>
+            <div class="fake-input">Explain your reasoning&hellip;</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+              <span style="font-size:12px;font-weight:600;color:var(--n-600)">Follow-up 3 of &infin;</span>
+              <span class="btn btn-sm">Submit reasoning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Marquee ═══════════════════════════════════════════════════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Why? &middot; Why is that true? &middot; What would break it? &middot; Say it without the rule &middot; Why? &middot; Why is that true? &middot; What would break it? &middot; Say it without the rule &middot;&nbsp;</span>
+    <span>Why? &middot; Why is that true? &middot; What would break it? &middot; Say it without the rule &middot; Why? &middot; Why is that true? &middot; What would break it? &middot; Say it without the rule &middot;&nbsp;</span>
+  </div>
+</div>
+
+<!-- ══ Thesis ════════════════════════════════════════════════════════ -->
+<section class="rule-b">
+  <div class="wrap thesis">
+    <h2 data-reveal>Our grades went up.<br><span class="accent">Our understanding went down.</span></h2>
+    <div class="bar" data-grow></div>
+    <p data-reveal style="margin:0;font-size:20px;color:var(--n-700);max-width:44ch">Both things are true at once, and they are related.</p>
+  </div>
+</section>
+
+<!-- ══ Evidence ══════════════════════════════════════════════════════ -->
+<section id="evidence" class="rule-b">
+  <div class="wrap" style="padding-block:96px 0">
+    <div class="ev-head">
+      <h2 class="h-sec" data-reveal>This is not a hunch.</h2>
+      <p data-reveal>AI arrived in education faster than any technology before it. The research on what it did to us is starting to arrive too.</p>
+    </div>
+  </div>
+
+  <div style="border-top:var(--rule)">
+    <div class="wrap stats">
+      <div class="stat" data-reveal>
+        <div class="stat-n"><span data-count="94" data-suffix="%">94%</span></div>
+        <div class="bar" data-grow></div>
+        <p><strong>of students now use generative AI for assessed work</strong> &mdash; up from 53% two years earlier.</p>
+        <a class="src" href="https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/" target="_blank" rel="noopener">HEPI Student Generative AI Survey 2026 &nearr;</a>
+      </div>
+      <div class="stat" data-reveal>
+        <div class="stat-n"><span data-count="83" data-suffix="%">83%</span></div>
+        <div class="bar" data-grow></div>
+        <p><strong>of people who wrote an essay with AI could not quote a single line of it</strong> &mdash; sixty seconds after submitting. The groups who used a search engine, or nothing at all, had no such trouble.</p>
+        <a class="src" href="https://www.media.mit.edu/publications/your-brain-on-chatgpt/" target="_blank" rel="noopener">MIT Media Lab, <i>Your Brain on ChatGPT</i>, 2025 (n=54) &nearr;</a>
+      </div>
+      <div class="stat" data-reveal>
+        <div class="stat-n pulse">&darr;</div>
+        <div class="bar" data-grow></div>
+        <p><strong>The heaviest AI users scored the lowest on critical thinking.</strong> Across 666 participants, the link ran through &ldquo;cognitive offloading&rdquo; &mdash; handing your thinking to the tool. The youngest participants were the most dependent, and scored worst.</p>
+        <a class="src" href="https://www.mdpi.com/2075-4698/15/1/6" target="_blank" rel="noopener">Gerlich, <i>Societies</i>, 2025 (n=666, correlational) &nearr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div style="border-top:var(--rule)">
+    <div class="wrap" style="padding-block:40px">
+      <p class="ev-foot" data-reveal>None of this makes students the villain. When the only thing being measured is the answer, producing the answer is the rational move. <strong style="font-weight:800">The measurement is what&rsquo;s broken.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ The turn ══════════════════════════════════════════════════════ -->
+<section class="turn rule-b">
+  <div class="wrap">
+    <div class="bar" data-grow></div>
+    <h2 data-reveal>So we asked a stupid question.</h2>
+    <p class="lead" data-reveal>What if the AI asked <i>you</i>?</p>
+    <p data-reveal>Not a quiz. Not flashcards. An interrogation: one that goes after the belief underneath your answer, notices when you&rsquo;re pattern-matching instead of reasoning, and refuses to move on until you can say <i>why</i>.</p>
+    <p data-reveal>A lecturer with two hundred students cannot sit with each of them and probe what they actually understand. That is not a failure of teaching. It is arithmetic.</p>
+    <p class="punch" data-reveal>An AI can.</p>
+    <div class="bar" data-grow></div>
+    <p class="close" data-reveal>This isn&rsquo;t about being anti-AI. It&rsquo;s about the fact that we&rsquo;re using it in the way that makes us dumbest.</p>
+  </div>
+</section>
+
+<!-- ══ How it works ══════════════════════════════════════════════════ -->
+<section id="how" class="rule-b">
+  <div class="wrap" style="padding-block:96px 56px">
+    <h2 class="h-sec" data-reveal>One loop, repeated until it holds.</h2>
+  </div>
+
+  <!-- 01 -->
+  <div class="step">
+    <div class="wrap">
+      <div class="step-copy" data-reveal>
+        <div><span class="step-num">01</span><h3>Choose what to master</h3></div>
+        <p>Calculus. Physics. Philosophy. You pick a domain and Vetus starts where you actually are, not where a syllabus assumes you are.</p>
+      </div>
+      <div class="step-visual" data-reveal>
+        <div class="card">
+          <div class="card-head">Learn</div>
+          <div style="padding:24px 20px;display:grid;gap:14px">
+            <p class="card-q">What do you want to master?</p>
+            <div class="opts">
+              <div class="opt is-active"><span>Calculus</span><span>&rarr;</span></div>
+              <div class="opt"><span>Classical mechanics</span><span>&rarr;</span></div>
+              <div class="opt"><span>Epistemology</span><span>&rarr;</span></div>
+              <div class="opt"><span>Linear algebra</span><span>&rarr;</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="step flip">
+    <div class="wrap">
+      <div class="step-visual" data-reveal>
+        <div class="card">
+          <div class="card-head">Probe</div>
+          <div style="padding:24px 20px;display:grid;gap:16px">
+            <p class="card-q">What do you think you understand?</p>
+            <div style="display:grid;gap:12px">
+              <div class="meter">
+                <div class="meter-top"><span>Limits</span><span>Confident</span></div>
+                <div class="meter-track"><div class="meter-fill" style="width:86%" data-grow></div></div>
+              </div>
+              <div class="meter">
+                <div class="meter-top"><span>Continuity</span><span>Fairly sure</span></div>
+                <div class="meter-track"><div class="meter-fill" style="width:55%" data-grow></div></div>
+              </div>
+              <div class="meter">
+                <div class="meter-top"><span>Derivatives</span><span>Shaky</span></div>
+                <div class="meter-track"><div class="meter-fill" style="width:30%" data-grow></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-copy" data-reveal>
+        <div><span class="step-num">02</span><h3>It finds out what you think you know</h3></div>
+        <p>Before it teaches anything, Vetus probes. It&rsquo;s mapping the shape of your understanding &mdash; and the shape matters more than the score.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="step">
+    <div class="wrap">
+      <div class="step-copy" data-reveal>
+        <div><span class="step-num">03</span><h3>It names the weakness out loud</h3></div>
+        <p>Vetus doesn&rsquo;t just mark you wrong. It tells you what <strong style="font-weight:800">kind</strong> of wrong &mdash; memorised where you should have reasoned, procedure where you needed principle.</p>
+      </div>
+      <div class="step-visual" data-reveal>
+        <div class="insight">
+          <div class="card-head">Tutor insight</div>
+          <div class="insight-body">
+            <p class="insight-q">&ldquo;Your understanding of &lsquo;Limits&rsquo; seems rule-based. Shall we explore why they exist?&rdquo;</p>
+            <div class="tags">
+              <span class="tag">Rule-based</span>
+              <span class="tag">Pattern-matched</span>
+              <span class="tag">Not yet principled</span>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <span class="btn btn-sm">Explore why</span>
+              <span class="btn btn-sm btn-ghost">Later</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 — interactive -->
+  <div class="step flip">
+    <div class="wrap">
+      <div class="step-visual" data-reveal>
+        <div class="card">
+          <div class="card-head">Derivatives &mdash; question 4</div>
+          <div style="padding:24px 20px;display:grid;gap:16px">
+            <p class="card-q" style="font-size:22px;line-height:1.25">What is the derivative of a constant function?</p>
+            <div class="opts" id="demo-opts" role="group" aria-label="Answer options">
+              <button type="button" class="opt" data-choice="A"><span>A &middot; One</span></button>
+              <button type="button" class="opt" data-choice="B"><span>B &middot; Zero</span></button>
+              <button type="button" class="opt" data-choice="C"><span>C &middot; Undefined</span></button>
+            </div>
+            <div class="defend"><p id="demo-prompt">Pick one &mdash; then Vetus asks why</p></div>
+            <div class="fake-input" id="demo-input" style="min-height:70px">Explain your reasoning&hellip;</div>
+            <button type="button" class="btn btn-sm" id="demo-submit" style="width:100%">Submit reasoning</button>
+          </div>
+        </div>
+      </div>
+      <div class="step-copy" data-reveal>
+        <div><span class="step-num">04</span><h3>Every answer is followed by &ldquo;why?&rdquo;</h3></div>
+        <p>You&rsquo;ll get multiple choice. Then you&rsquo;ll be asked to defend it in your own words. Getting it right by accident doesn&rsquo;t survive the follow-up question.</p>
+        <p style="margin-top:16px;font-size:15px;color:var(--n-600)">&larr; Try it. Pick any answer.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div class="step">
+    <div class="wrap">
+      <div class="step-copy" data-reveal>
+        <div><span class="step-num">05</span><h3>Your understanding becomes a map</h3></div>
+        <p>Every session updates a live picture of what you hold firmly, what you hold loosely, and what you only think you hold. Gaps stop being invisible.</p>
+      </div>
+      <div class="step-visual" data-reveal>
+        <div class="card">
+          <div class="tabs">
+            <span>Map</span><span>Path</span><span>Insights</span>
+          </div>
+          <div class="grid-map">
+            <div class="cell held"><span>Held</span><span>Limits</span></div>
+            <div class="cell loose"><span>Loose</span><span>Continuity</span></div>
+            <div class="cell"><span>Hollow</span><span>Chain rule</span></div>
+            <div class="cell"><span>Hollow</span><span>Optimisation</span></div>
+            <div class="cell loose"><span>Loose</span><span>Series</span></div>
+            <div class="cell held"><span>Held</span><span>Integrals</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Features ══════════════════════════════════════════════════════ -->
+<section id="inside" class="rule-b">
+  <div class="wrap" style="padding-block:96px 48px">
+    <h2 class="h-sec" data-reveal>Four things, none of them a chatbot.</h2>
+  </div>
+  <div style="border-top:var(--rule)">
+    <div class="wrap features">
+      <div class="feature" data-reveal>
+        <div class="feature-top"><h3>Learn</h3><span>The Socratic engine</span></div>
+        <p>Questioning that keeps going past the right answer. It debates what you believe, not just what you can recall.</p>
+      </div>
+      <div class="feature" data-reveal>
+        <div class="feature-top"><h3>Path</h3><span>Adaptive by weakness</span></div>
+        <p>Vetus routes you toward what you&rsquo;re shakiest on, not what comes next in the chapter. Confidence and competence get told apart.</p>
+      </div>
+      <div class="feature" data-reveal>
+        <div class="feature-top"><h3>Map</h3><span>Your understanding, visible</span></div>
+        <p>A live map of every concept you&rsquo;ve been questioned on, and how solidly it&rsquo;s actually held. The gaps you can&rsquo;t feel become gaps you can see.</p>
+      </div>
+      <div class="feature" data-reveal>
+        <div class="feature-top"><h3>Insights</h3><span>Proof of understanding</span></div>
+        <p>Not a grade. A record of the reasoning you produced, where it was sound, and where it collapsed under a follow-up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Fair warning ══════════════════════════════════════════════════ -->
+<section class="warn">
+  <div class="wrap">
+    <h2 data-reveal>Fair warning: this will feel worse than ChatGPT.</h2>
+    <div>
+      <p data-reveal>It should. In a Harvard study, students taught through active engagement <strong style="font-weight:800">learned measurably more</strong> than students given polished lectures &mdash; and <strong style="font-weight:800">believed they had learned less.</strong> The effortless option felt better and taught less. The effortful one felt worse and worked.</p>
+      <p data-reveal style="font-size:14px;margin-bottom:26px"><a href="https://pubmed.ncbi.nlm.nih.gov/31484770/" target="_blank" rel="noopener">Deslauriers et al., <i>PNAS</i>, 2019 &nearr;</a></p>
+      <div class="bar" data-grow></div>
+      <p data-reveal>Vetus is the effortful one. It will make you sit with a question you can&rsquo;t immediately answer. That friction isn&rsquo;t a rough edge we haven&rsquo;t sanded down yet. It&rsquo;s the product.</p>
+      <p class="punch" data-reveal>If you want the answer, you already have twenty tools for that. This one is for when you want to actually know.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Who it's for ══════════════════════════════════════════════════ -->
+<section class="rule-b">
+  <div class="wrap who">
+    <div data-reveal>
+      <h3>Students</h3>
+      <p>For the subject you&rsquo;re passing and don&rsquo;t understand. Find out which one that is before the exam does.</p>
+    </div>
+    <div data-reveal>
+      <h3>Self-teachers</h3>
+      <p>No lecturer to check your reasoning against? Vetus argues back.</p>
+    </div>
+    <div data-reveal>
+      <h3>Educators</h3>
+      <p>The individual attention arithmetic never allowed you to give. See where a cohort&rsquo;s understanding is genuinely thin, not just where the marks fell.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ═══════════════════════════════════════════════════════════ -->
+<section id="faq" class="rule-b">
+  <div class="wrap" style="padding-block:96px 40px">
+    <h2 class="h-sec" data-reveal>The doubts, answered.</h2>
+  </div>
+  <div class="wrap" style="padding-bottom:88px">
+    <div class="faq" data-reveal>
+      <details>
+        <summary><span>Is this just a quiz app?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p>No. A quiz checks whether you produced the right answer. Vetus checks whether your reasoning holds &mdash; and every question is followed by &ldquo;why?&rdquo;</p>
+      </details>
+      <details>
+        <summary><span>Will it give me answers if I&rsquo;m stuck?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p>Yes. It teaches when you genuinely don&rsquo;t know. What it won&rsquo;t do is hand you the answer before finding out whether you needed it.</p>
+      </details>
+      <details>
+        <summary><span>Isn&rsquo;t using AI to fix AI a bit circular?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p>The problem was never the technology. It was pointing it at the answer instead of at the understanding. Same tool, opposite direction.</p>
+      </details>
+      <details>
+        <summary><span>Does this replace my lecturer or my textbook?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p>No &mdash; it&rsquo;s the thing neither can scale. A textbook can&rsquo;t notice you&rsquo;ve memorised a rule without grasping it. A lecturer with two hundred students can&rsquo;t either.</p>
+      </details>
+      <details>
+        <summary><span>Is it free?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p>Free during beta.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Final CTA ═════════════════════════════════════════════════════ -->
+<section id="start" class="final">
+  <div class="wrap">
+    <h2 data-reveal>Find out what you don&rsquo;t actually know.</h2>
+    <p data-reveal>One session is enough to see it. It takes about ten minutes and it&rsquo;s mildly humbling.</p>
+    <div class="final-row" data-reveal>
+      <a href="#top" class="btn">Start being questioned</a>
+      <form class="notify" id="notify" novalidate>
+        <label for="notify-email" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+        <input id="notify-email" type="email" required placeholder="you@university.edu" autocomplete="email">
+        <button type="submit">Notify me</button>
+      </form>
+    </div>
+    <p class="notify-msg" id="notify-msg" role="status" aria-live="polite"></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ Footer ════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="f-mark">Vetus</div>
+      <p class="f-note"><i>Vetus</i> is Latin for old. The method is 2,400 years old. The only new part is that it never gets tired of asking you.</p>
+      <a href="#top" style="font-weight:800;font-size:16px">Read the manifesto &rarr;</a>
+    </div>
+    <div>
+      <h4>Sources</h4>
+      <div class="f-links">
+        <a href="https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/" target="_blank" rel="noopener">HEPI Student Generative AI Survey 2026</a>
+        <a href="https://www.hepi.ac.uk/reports/student-generative-ai-survey-2025/" target="_blank" rel="noopener">HEPI Student Generative AI Survey 2025</a>
+        <a href="https://www.media.mit.edu/publications/your-brain-on-chatgpt/" target="_blank" rel="noopener">MIT Media Lab &mdash; Your Brain on ChatGPT (n=54)</a>
+        <a href="https://www.mdpi.com/2075-4698/15/1/6" target="_blank" rel="noopener">Gerlich 2025, Societies (n=666, correlational)</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/31484770/" target="_blank" rel="noopener">Deslauriers et al. 2019, PNAS</a>
+      </div>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <div class="f-links">
+        <a href="#how">How it works</a>
+        <a href="#inside">What&rsquo;s in it</a>
+        <a href="#faq">Questions</a>
+        <a href="#notify">Mobile &mdash; get notified</a>
+      </div>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <div class="wrap">
+      <span>Vetus, by OffAxis. <i>Vetus</i> is Latin for old. The method is 2,400 years old. Only the tutor is new.</span>
+      <span>Free while in beta.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ─────────────────────────────────────────────────────────────────
+     CONFIG — set this to go live with the email list.
+     Paste a Formspree / Buttondown / Getform endpoint URL here.
+     Left empty, the form validates and confirms without sending
+     anywhere, which is what you want for a demo.
+     ───────────────────────────────────────────────────────────── */
+  var NOTIFY_ENDPOINT = '';
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Scroll progress ───────────────────────────────────────────── */
+  var bar = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement;
+    var max = Math.max(1, h.scrollHeight - h.clientHeight);
+    bar.style.width = (Math.min(1, h.scrollTop / max) * 100).toFixed(2) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── Reveal on scroll ──────────────────────────────────────────── */
+  var reveals = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if (reduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (n) { n.style.opacity = 1; });
+  } else {
+    reveals.forEach(function (n) {
+      n.style.opacity = '0';
+      n.style.transform = 'translateY(26px)';
+      n.style.transition = 'opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)';
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.filter(function (e) { return e.isIntersecting; })
+        .forEach(function (e, i) {
+          e.target.style.transitionDelay = (i * 70) + 'ms';
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          io.unobserve(e.target);
+        });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+    reveals.forEach(function (n) { io.observe(n); });
+  }
+
+  /* ── Number counters ───────────────────────────────────────────── */
+  var counters = [].slice.call(document.querySelectorAll('[data-count]'));
+  if (reduced || !('IntersectionObserver' in window)) {
+    counters.forEach(function (el) {
+      el.textContent = el.dataset.count + (el.dataset.suffix || '');
+    });
+  } else {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target,
+            target = parseFloat(el.dataset.count),
+            suffix = el.dataset.suffix || '',
+            t0 = performance.now(),
+            dur = 1400;
+        (function tick(t) {
+          var k = Math.min(1, (t - t0) / dur);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3))) + suffix;
+          if (k < 1) requestAnimationFrame(tick);
+        })(t0);
+        cio.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (n) { cio.observe(n); });
+  }
+
+  /* ── Growing rules and meter bars ──────────────────────────────── */
+  var grows = [].slice.call(document.querySelectorAll('[data-grow]'));
+  if (!reduced && 'IntersectionObserver' in window) {
+    grows.forEach(function (n) {
+      n.style.transform = 'scaleX(0)';
+      n.style.transition = 'transform 1s cubic-bezier(.2,.7,.2,1)';
+    });
+    var gio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.style.transform = 'scaleX(1)';
+        gio.unobserve(e.target);
+      });
+    }, { threshold: 0.3 });
+    grows.forEach(function (n) { gio.observe(n); });
+  }
+
+  /* ── Hero typing loop ──────────────────────────────────────────── */
+  var typed = document.getElementById('typed');
+  var LINES = [
+    'Why is it zero?',
+    'What would change if it were not?',
+    'Say that without using the word “rule”.'
+  ];
+  if (typed) {
+    if (reduced) {
+      typed.textContent = LINES[0];
+    } else {
+      var li = 0, ci = 0, deleting = false;
+      (function step() {
+        var line = LINES[li];
+        ci += deleting ? -1 : 1;
+        typed.textContent = line.slice(0, ci);
+        var d = deleting ? 22 : 52;
+        if (!deleting && ci === line.length) { deleting = true; d = 2200; }
+        else if (deleting && ci === 0) { deleting = false; li = (li + 1) % LINES.length; d = 400; }
+        setTimeout(step, d);
+      })();
+    }
+  }
+
+  /* ── Interactive demo: pick an answer, get asked why ───────────── */
+  var opts = document.getElementById('demo-opts');
+  var prompt = document.getElementById('demo-prompt');
+  var input = document.getElementById('demo-input');
+  var submit = document.getElementById('demo-submit');
+
+  // Every choice gets a "why" — including the correct one. That is the point.
+  var FOLLOWUPS = {
+    A: 'Now defend it — why would a flat line have slope one?',
+    B: 'Correct. Now defend it — why does an unchanging quantity have zero rate of change?',
+    C: 'Now defend it — what would have to be true for the slope to not exist?'
+  };
+
+  if (opts && prompt && input && submit) {
+    opts.addEventListener('click', function (e) {
+      var btn = e.target.closest('.opt');
+      if (!btn) return;
+      [].slice.call(opts.querySelectorAll('.opt')).forEach(function (o) {
+        o.classList.remove('is-picked');
+      });
+      btn.classList.add('is-picked');
+      prompt.textContent = FOLLOWUPS[btn.dataset.choice];
+      input.textContent = 'Explain your reasoning…';
+      input.style.color = 'var(--n-500)';
+      submit.textContent = 'Submit reasoning';
+      submit.disabled = false;
+    });
+
+    submit.addEventListener('click', function () {
+      if (!opts.querySelector('.is-picked')) {
+        prompt.textContent = 'Pick an answer first — then Vetus asks why';
+        return;
+      }
+      input.textContent = 'That is where the real session begins. Vetus would follow your reasoning from here — and keep asking.';
+      input.style.color = 'var(--text)';
+      submit.textContent = 'Start a real session →';
+      submit.disabled = false;
+      submit.onclick = function () {
+        document.getElementById('start').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+      };
+    });
+  }
+
+  /* ── Notify form ───────────────────────────────────────────────── */
+  var form = document.getElementById('notify');
+  var msg = document.getElementById('notify-msg');
+  if (form && msg) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var field = document.getElementById('notify-email');
+      var email = (field.value || '').trim();
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.textContent = 'That email does not look right. Try again?';
+        field.focus();
+        return;
+      }
+
+      if (!NOTIFY_ENDPOINT) {
+        msg.textContent = "You're on the list. We'll ask you something soon.";
+        form.reset();
+        return;
+      }
+
+      msg.textContent = 'Sending…';
+      fetch(NOTIFY_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email: email })
+      }).then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        msg.textContent = "You're on the list. We'll ask you something soon.";
+        form.reset();
+      }).catch(function () {
+        msg.textContent = 'Something went wrong. Email us instead: hello@vetus.study';
+      });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
