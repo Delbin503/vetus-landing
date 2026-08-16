@@ -108,7 +108,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .nav{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:600}
 .nav a{color:var(--text);border:none;padding:4px 0;border-bottom:2px solid transparent}
 .nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-.nav .btn{border:2px solid var(--accent)}
+/* .nav a wins on specificity over .btn — restate the button colours here. */
+.nav a.btn{color:#fff;border:2px solid var(--accent)}
+.nav a.btn:hover{color:#fff;background:var(--accent-600);border-color:var(--accent-600)}
 
 .progress{position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);z-index:60;transform-origin:left}
 
